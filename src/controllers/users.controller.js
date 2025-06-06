@@ -27,9 +27,22 @@ const deleteUser = async(req,res) =>{
     res.send({status:"success",message:"User deleted"})
 }
 
+const createUser = async (req, res) => {
+    try {
+        const nuevoUsuario = req.body; 
+        await usersService.create(nuevoUsuario); 
+        res.status(201).send("Usuario creado correctamente"); 
+
+    } catch (error) {
+        res.status(500).send("Error al crear el usuario "); 
+    }
+}
+
+
 export default {
     deleteUser,
     getAllUsers,
     getUser,
-    updateUser
+    updateUser,
+    createUser
 }

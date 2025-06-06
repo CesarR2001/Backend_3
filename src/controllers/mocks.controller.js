@@ -1,7 +1,5 @@
 import mockingService from "../services/mocking.js";
 
- 
-
     const createPets = async (req, res) => {
         try {
             const pets = await mockingService.generatePetsMocking(50);

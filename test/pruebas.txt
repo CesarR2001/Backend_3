@@ -1,0 +1,14 @@
+
+  Testing de la App Web Adoptame
+    Testing de Adopciones
+      ✔ GET /api/adoptions debería devolver un array con todas las adopciones (97ms)
+      ✔ POST /api/adoptions/:uid/:pid debería crear una adopción (289ms)
+      ✔ POST /api/adoptions/abc/xyz debería devolver 400 por IDs mal formateados
+      ✔ POST /api/adoptions/:uid/:pid con usuario inexistente debería devolver 404 (54ms)
+      ✔ POST /api/adoptions/:uid/:pid con mascota inexistente debería devolver 404 (113ms)
+      ✔ GET /api/adoptions/:aid debería devolver una adopción específica (62ms)
+      ✔ GET /api/adoptions/:aid con ID inexistente debería devolver 404 (56ms)
+      ✔ GET /api/adoptions/:aid con ID inválido debería devolver 400 
+
+
+  8 passing (704ms)
