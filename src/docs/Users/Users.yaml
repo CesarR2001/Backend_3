@@ -12,9 +12,10 @@ paths:
               schema: 
                 type: array
                 items: 
-                  $ref: "#components/schemas/User"
+                  $ref: "#/components/schemas/User"
         "500":
           description: Error interno del servidor
+
     post: 
       summary: Este endpoint crea un usuario
       tags: 
@@ -24,19 +25,68 @@ paths:
         content:
           application/json: 
             schema: 
-              $ref: "#components/requestBodies/createUser"
+              $ref: "#/components/requestBodies/createUser"
       responses: 
         "201":
-          description: usuario creado con exito
+          description: Usuario creado con éxito
         "500":
-          description: error interno del servidor
+          description: Error interno del servidor
+
+  /api/users/{uid}:
+    put:
+      summary: Actualiza un usuario existente
+      tags:
+        - Users
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID del usuario a actualizar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Campos a actualizar del usuario
+              example:
+                first_name: NuevoNombre
+                last_name: NuevoApellido
+                password: nuevaPassword
+      responses:
+        "200":
+          description: Usuario actualizado correctamente
+        "404":
+          description: Usuario no encontrado
+        "500":
+          description: Error interno del servidor
+
+    delete:
+      summary: Elimina un usuario por ID
+      tags:
+        - Users
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID del usuario a eliminar
+      responses:
+        "200":
+          description: Usuario eliminado correctamente
+        "500":
+          description: Error interno del servidor
+
 components: 
   schemas: 
     User: 
       type: object
       properties: 
-        -id: 
-          type: ObjectId
+        _id: 
+          type: string
           description: ID autogenerado por MongoDB
         first_name: 
           type: string
@@ -48,10 +98,11 @@ components:
           type: string
           description: Password del usuario
       example: 
-        _id: ObjectId("123456")
-        first_name: Nicolas
-        last_name: Rodriguez
+        _id: "123456"
+        first_name: Tinki
+        last_name: Winki
         password: 1234
+
   requestBodies: 
     createUser: 
       type: object
@@ -67,9 +118,9 @@ components:
           description: Password del usuario
         email:
           type: string
-          description: email del usuario
+          description: Email del usuario
       example: 
-        first_name: Carla
-        last_name: Perez
-        password: 2345
-        email: carla@perez.com
+        first_name: Mirtha
+        last_name: Legrand
+        password: 1234
+        email: chiqui@legrand.com
